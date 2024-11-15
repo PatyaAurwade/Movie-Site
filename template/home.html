@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0056b3;
+        }
+
+        .product-link {
+            display: block;
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            font-weight: bold;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-link:hover {
+            background-color: #0056b3;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-title {
+            font-size: 24px;
+            color: #333;
+            margin: 0;
+        }
+
+        .product-details {
+            font-size: 16px;
+            color: #666;
+            margin-top: 10px;
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .product-image {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Movie List</h1>
+        <a href="{% url 'insert' %}" class="product-link">Add Movies</a>
+        
+        {% for n in data %}
+        <div class="product-card">
+            <div class="product-details">
+                <h2 class="product-title">{{ n.Name }}</h2>
+                <p><strong>Duration:</strong> {{ n.Duration }}</p>
+                <p><strong>Genre:</strong> {{ n.Genre }}</p>
+                <p><strong>Host Name:</strong> {{ n.hostName }}</p>
+                <p><strong>Language:</strong> {{ n.Language }}</p>
+                <p><strong>Venue:</strong> {{ n.Venue }}</p>
+            </div>
+            <img src="{{ n.imageURL }}" alt="no image found" class="product-image">
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
